@@ -1,7 +1,9 @@
 package com.example.ggb.controller;
 
+import com.example.ggb.common.ServiceResultEnum;
 import com.example.ggb.controller.param.MallUserLoginParam;
 import com.example.ggb.service.MallUserService;
+import com.example.ggb.util.NumberUtil;
 import com.example.ggb.util.Result;
 import com.example.ggb.util.ResultGenerator;
 import io.swagger.annotations.Api;
@@ -32,6 +34,10 @@ public class MallPersonalAPI {
     @PostMapping("/user/login")
     @ApiOperation("用户登录")
     public Result<String>login(@RequestBody @Valid MallUserLoginParam mallUserLoginParam){
+
+        if (!NumberUtil.isPhone(mallUserLoginParam.getLoginName())){
+            return ResultGenerator.genFailResult(ServiceResultEnum.LOGIN_NAME_IS_NOT_PHONE.getResult());
+        }
 
         if(mallUserService.selectByLoginName(mallUserLoginParam.getLoginName())==null){
             return ResultGenerator.genFailResult("用户不存在");
