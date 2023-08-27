@@ -27,6 +27,15 @@ public class NumberUtil {
         return matcher.matches();
     }
 
+    public static boolean isPhone2(String phone) {
+        int len = phone.length();
+//        if (len!= 11) {return false;}
+        String str = "123456";
+        System.out.println(str.charAt(0));
+        System.out.println((int)str.charAt(0));
+        return true;
+    }
+
     /**
      * 生成指定长度的随机数
      *
