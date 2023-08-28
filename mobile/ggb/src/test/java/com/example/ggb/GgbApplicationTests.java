@@ -1,22 +1,13 @@
 package com.example.ggb;
 
-import com.example.ggb.common.ServiceResultEnum;
 import com.example.ggb.entity.TestUser;
-import com.example.ggb.entity.User;
 import com.example.ggb.service.TestUserService;
-import com.example.ggb.util.NumberUtil;
-import com.example.ggb.util.ResultGenerator;
-
-import java.util.Arrays;
-import java.util.Date;
-import java.util.Scanner;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.stereotype.Component;
+
+import java.util.Date;
 
 
 @SpringBootTest
@@ -34,7 +25,13 @@ class GgbApplicationTests {
     }
 
     public static void main(String[] args) {
-      System.out.println(System.currentTimeMillis());
+        //当前时间
+        Date now = new Date();
+        System.out.println(now);
+        //过期时间
+        Date expireTime = new Date(now.getTime() + 2 * 24 * 3600 * 1000);//过期时间 48 小时
+        System.out.println(expireTime);
+
     }
 
 }
