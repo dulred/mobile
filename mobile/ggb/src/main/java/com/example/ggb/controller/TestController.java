@@ -1,11 +1,15 @@
 package com.example.ggb.controller;
 
 import com.example.ggb.entity.TestUser;
+import com.example.ggb.entity.User;
 import com.example.ggb.service.TestUserService;
 import com.example.ggb.util.Result;
 import com.example.ggb.util.ResultGenerator;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+
+import java.util.Date;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -28,5 +32,14 @@ public class TestController {
     public Result<TestUser> testUser(int id) {
        TestUser testUser = testUserService.selectByPrimaryKey(id);
         return ResultGenerator.genSuccessResult(testUser);
+    }
+
+    @GetMapping("/user")
+    @ApiOperation("测试获取用户")
+    public User getUser() {
+        User user = new User();
+        user.setName("Alice");
+        user.setBirthDate(new Date()); // 设置一个日期 
+        return user;
     }
 }

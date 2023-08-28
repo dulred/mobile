@@ -26,15 +26,28 @@ public class NumberUtil {
         Matcher matcher = pattern.matcher(phone);
         return matcher.matches();
     }
-
-    public static boolean isPhone2(String phone) {
-        int len = phone.length();
-//        if (len!= 11) {return false;}
-        String str = "123456";
-        System.out.println(str.charAt(0));
-        System.out.println((int)str.charAt(0));
-        return true;
-    }
+    
+// 原生字符串操作写法
+    // public static boolean isPhone2(String phone) {
+    //     int len = phone.length();
+    //     if (len != 11) {
+    //         return false;
+    //     }
+    
+    //     if (!(phone.startsWith("13") || phone.startsWith("14") || phone.startsWith("15")
+    //             || phone.startsWith("17") || phone.startsWith("18"))) {
+    //         return false;
+    //     }
+    
+    //     for (int i = 0; i < len; i++) {
+    //         char c = phone.charAt(i);
+    //         if (c < '0' || c > '9') {
+    //             return false;
+    //         }
+    //     }
+    
+    //     return true;
+    // }
 
     /**
      * 生成指定长度的随机数

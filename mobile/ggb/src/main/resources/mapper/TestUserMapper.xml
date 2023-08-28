@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.ggb.repository.TestUserMapper">
 
-    <select id="selectByPrimaryKey" parameterType="int" resultType="TestUser">
+    <select id="selectByPrimaryKey" parameterType="Integer" resultType="TestUser">
         select  * from mall_test where test_id = #{id}
     </select>
 

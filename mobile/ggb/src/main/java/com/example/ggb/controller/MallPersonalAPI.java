@@ -47,10 +47,9 @@ public class MallPersonalAPI {
         {
             return ResultGenerator.genSuccessResult("asfasfsafsafas");
         }
-        else {
-            return ResultGenerator.genFailResult("密码错误");
-        }
 
+        return ResultGenerator.genFailResult("密码错误");
+  
 
     }
 
