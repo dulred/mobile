@@ -28,7 +28,6 @@ public class SystemUtil {
         try {
             MessageDigest md = MessageDigest.getInstance("MD5");
             md.update(src.getBytes());
-            System.out.println(md.digest().length);
             String result = new BigInteger(1, md.digest()).toString(16);
             if (result.length() == 31) {
                 result = result + "-";
