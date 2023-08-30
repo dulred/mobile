@@ -21,7 +21,6 @@ class GgbApplicationTests {
     @Test
     void contextLoads() {
         TestUser testUser = testUserService.selectByPrimaryKey(1);
-        System.out.println(testUser.toString());
     }
 
     public static void main(String[] args) {
