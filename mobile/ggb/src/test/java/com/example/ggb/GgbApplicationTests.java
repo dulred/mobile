@@ -21,13 +21,13 @@ class GgbApplicationTests {
     @Test
     void contextLoads() {
         TestUser testUser = testUserService.selectByPrimaryKey(1);
-        System.out.println(testUser.toString());
     }
 
     public static void main(String[] args) {
         //当前时间
         Date now = new Date();
         System.out.println(now);
+        System.out.println("nishizhu");
         //过期时间
         Date expireTime = new Date(now.getTime() + 2 * 24 * 3600 * 1000);//过期时间 48 小时
         System.out.println(expireTime);
