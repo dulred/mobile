@@ -8,15 +8,31 @@
  */
 package com.example.ggb.config;
 
+import com.example.ggb.config.handler.TokenToMallUserMethodArgumentResolver;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.web.method.support.HandlerMethodArgumentResolver;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupport;
+
+import java.util.List;
 
 @Component
 public class MallWebMvcConfigurer extends WebMvcConfigurationSupport {
 
 
+    @Autowired
+    private TokenToMallUserMethodArgumentResolver tokenToMallUserMethodArgumentResolver;
+
+    /**
+     * TokenToMallUser 注解处理方法
+     *
+     * @param argumentResolvers
+     */
+    public void addArgumentResolvers(List<HandlerMethodArgumentResolver> argumentResolvers) {
+        argumentResolvers.add(tokenToMallUserMethodArgumentResolver);
+    }
 
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
 
