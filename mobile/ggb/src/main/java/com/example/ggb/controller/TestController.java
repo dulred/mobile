@@ -34,12 +34,12 @@ public class TestController {
         return ResultGenerator.genSuccessResult(testUser);
     }
 
-    @GetMapping("/user")
-    @ApiOperation("测试获取用户")
-    public User getUser() {
-        User user = new User();
-        user.setName("Alice");
-        user.setBirthDate(new Date()); // 设置一个日期 
-        return user;
+
+
+   @ApiOperation("ceshi")
+    @GetMapping("/test2")
+    public void testUser2(Integer id) {
+        System.out.println(id);
     }
+
 }

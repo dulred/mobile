@@ -9,9 +9,6 @@ import lombok.Data;
 
 @Data
 public class User {
+    private Integer id;
     private String name;
-    
-    @JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")
-    private Date birthDate;
-
 }
