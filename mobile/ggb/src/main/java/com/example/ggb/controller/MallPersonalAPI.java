@@ -144,11 +144,18 @@ public class MallPersonalAPI {
 
     } 
 
-
+    /**
+     * 用户登出
+     *
+     * 
+     * @return @return {@code Result<String> }
+     * @author dulred
+     * @date 2023/08/31
+     */
     @GetMapping("/user/logout")
     @ApiOperation("用户登出")
     public Result<String> logout (@TokenToMallUser MallUser loginMallUser){
-        
+
         if (mallUserService.logout(loginMallUser.getUserId())) {
             //登出成功
             return ResultGenerator.genSuccessResult(ServiceResultEnum.LOGOUT_SUCCESS.getResult());
