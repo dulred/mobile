@@ -15,7 +15,7 @@ public class ParamsCheckAspect {
      * 定义Pcheck使用的方法为切入点
      * @param: []
      * @return: void
-     * @author: kevin
+     * @author: dulred
      * @date: 2023/5/10 9:56
      */
     @Pointcut("@annotation(com.example.ggb.config.annotation.PCheck)") // 定义切点
@@ -25,7 +25,7 @@ public class ParamsCheckAspect {
      * 生命周期 为方法执行前
      * @param: [joinPoint]
      * @return: void
-     * @author: kevin
+     * @author: dulred
      * @date: 2023/5/10 9:56
      */
     @Before("pointcut()")
