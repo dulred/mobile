@@ -10,7 +10,6 @@ import com.example.ggb.util.Result;
 import com.example.ggb.util.ResultGenerator;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.ApiParam;
 
 import com.example.ggb.util.BeanUtil;
 

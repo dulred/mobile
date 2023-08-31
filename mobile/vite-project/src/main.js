@@ -2,6 +2,7 @@ import { createApp } from 'vue'
 import { createPinia } from 'pinia'
 import router from '@/router'
 import App from '@/App.vue'
+import CustomComponentPlugin from '@/plugins/customComponentPlugin'; // 导入自定义组件插件
 
 // 自适应html标签px值->用于rem
 import 'lib-flexible/flexible'
@@ -15,6 +16,10 @@ import 'vant/es/toast/style';
 const app = createApp(App)
 // 注册路由
 app.use(router)
+
+// 安装自定义组件插件
+app.use(CustomComponentPlugin);
+
 // 注册 store
 app.use(createPinia())
 // 挂载 Vue 实例

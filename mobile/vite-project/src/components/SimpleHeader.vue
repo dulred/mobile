@@ -5,7 +5,7 @@
     <div class="simple-header-name">{{ name }}</div>
     <i class="nbicon nbmore"></i>
   </header>
-  <div class="block" />
+  <div class="block" ></div>
 </template>
 
 <script>

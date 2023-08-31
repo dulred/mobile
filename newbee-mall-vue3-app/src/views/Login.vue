@@ -122,7 +122,7 @@ const onSubmit = async (values) => {
     })
     setLocal('token', data)
     // 需要刷新页面，否则 axios.js 文件里的 token 不会被重置
-    // window.location.href = '/'
+    window.location.href = '/'
   } else {
     await register({
       "loginName": values.username1,

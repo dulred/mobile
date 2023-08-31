@@ -11,6 +11,7 @@ import './common/style/theme.css'
 import 'vant/es/toast/style'
 const app = createApp(App)
 
+
 app.use(createPinia())
 app.use(router)
 app.use(ActionBarButton)
