@@ -38,7 +38,7 @@
 import { reactive, onMounted } from 'vue'
 import navBar from '@/components/NavBar.vue'
 import sHeader from '@/components/SimpleHeader.vue'
-import { getUserInfo } from '@/service/user'
+import { getUserInfo } from '@/request/user'
 import { useRouter } from 'vue-router'
 const router = useRouter()
 const state = reactive({

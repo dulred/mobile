@@ -38,7 +38,7 @@ onMounted(() => {
 </script>
 
 <style lang="less" scoped >
-    @import '../common/style/mixin';
+    @import '@/common/less/mixin';
     .nav-bar{
       position: fixed;
       left: 0;

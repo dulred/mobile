@@ -47,7 +47,7 @@ export default {
 </script>
 
 <style lang="less" scoped>
-  @import '../common/style/mixin';
+  @import '@/common/less/mixin';
   .simple-header {
     position: fixed;
     top: 0;
