@@ -17,6 +17,14 @@ public enum ServiceResultEnum {
 
     PARAM_ERROR("参数错误！"),
 
+    UPDATE_ERROR("修改失败！"),
+
+    UPDATE_SUCCESS("修改成功！"),
+
+    LOGOUT_ERROR("登出失败！"),
+
+    LOGOUT_SUCCESS("登出成功！"),
+    
     SAME_CATEGORY_EXIST("已存在同级同名的分类！"),
 
     SAME_LOGIN_NAME_EXIST("用户名已存在！"),

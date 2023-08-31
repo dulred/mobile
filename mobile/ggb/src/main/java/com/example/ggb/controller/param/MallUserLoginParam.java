@@ -4,6 +4,9 @@ import lombok.Data;
 
 import javax.validation.constraints.NotEmpty;
 
+/**
+ * 用户登录param
+ */
 @Data
 public class MallUserLoginParam {
 

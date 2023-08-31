@@ -66,7 +66,7 @@
       is_deleted, locked_flag, create_time
       )
     values (#{userId,jdbcType=BIGINT}, #{nickName,jdbcType=VARCHAR}, #{loginName,jdbcType=VARCHAR}, 
-      #{passwordMd5,jdbcType=VARCHAR}, #{introduceSign,jdbcType=VARCHAR},
+      #{passwordSha256,jdbcType=VARCHAR}, #{introduceSign,jdbcType=VARCHAR},
       #{isDeleted,jdbcType=TINYINT}, #{lockedFlag,jdbcType=TINYINT}, #{createTime,jdbcType=TIMESTAMP}
       )
   </insert>
@@ -82,7 +82,7 @@
             <if test="loginName != null">
                 login_name,
             </if>
-            <if test="passwordMd5 != null">
+            <if test="passwordSha256 != null">
                 password_Sha256,
             </if>
             <if test="introduceSign != null">
@@ -108,8 +108,8 @@
             <if test="loginName != null">
                 #{loginName,jdbcType=VARCHAR},
             </if>
-            <if test="passwordMd5 != null">
-                #{passwordMd5,jdbcType=VARCHAR},
+            <if test="passwordSha256 != null">
+                #{passwordSha256,jdbcType=VARCHAR},
             </if>
             <if test="introduceSign != null">
                 #{introduceSign,jdbcType=VARCHAR},
@@ -134,8 +134,8 @@
             <if test="loginName != null">
                 login_name = #{loginName,jdbcType=VARCHAR},
             </if>
-            <if test="passwordMd5 != null">
-                password_Sha256 = #{passwordMd5,jdbcType=VARCHAR},
+            <if test="passwordSha256 != null">
+                password_Sha256 = #{passwordSha256,jdbcType=VARCHAR},
             </if>
             <if test="introduceSign != null">
                 introduce_sign = #{introduceSign,jdbcType=VARCHAR},
@@ -156,7 +156,7 @@
     update mall_user
     set nick_name = #{nickName,jdbcType=VARCHAR},
       login_name = #{loginName,jdbcType=VARCHAR},
-      password_Sha256 = #{passwordMd5,jdbcType=VARCHAR},
+      password_Sha256 = #{passwordSha256,jdbcType=VARCHAR},
       introduce_sign = #{introduceSign,jdbcType=VARCHAR},
       is_deleted = #{isDeleted,jdbcType=TINYINT},
       locked_flag = #{lockedFlag,jdbcType=TINYINT},
