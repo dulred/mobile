@@ -2,11 +2,11 @@
   <div class="nav-bar van-hairline--top">
     <ul class="nav-list">
       <router-link  class="nav-list-item active" to="home">
-        <i class="nbicon nblvsefenkaicankaoxianban-1"></i>
+        <i class="iconfont icon-shouye"></i>
         <span>首页</span>
       </router-link>
       <router-link  class="nav-list-item" to="category">
-        <i class="nbicon nbfenlei"></i>
+        <i class="iconfont icon-grouping"></i>
         <span>分类</span>
       </router-link>
       <router-link  class="nav-list-item" to="cart">
@@ -14,7 +14,7 @@
         <span>购物车</span>
       </router-link>
       <router-link  class="nav-list-item" to="user">
-        <i class="nbicon nblvsefenkaicankaoxianban-"></i>
+        <i class="iconfont icon-wode"></i>
         <span>我的</span>
       </router-link>
     </ul>
@@ -22,19 +22,19 @@
 </template>
 
 <script setup>
-import { onMounted } from 'vue'
-import { useRoute } from 'vue-router'
+// import { onMounted } from 'vue'
+// import { useRoute } from 'vue-router'
 import { useCartStore } from '@/stores/cart'
-import { getLocal } from '@/common/js/utils'
-const route = useRoute()
+// import { getLocal } from '@/common/js/utils'
+// const route = useRoute()
 const cart = useCartStore()
-onMounted(() => {
-  const token = getLocal('token')
-  const path = route.path
-  if (token && !['/home', '/category'].includes(path)) {
-    cart.updateCart()
-  }
-})
+// onMounted(() => {
+//   const token = getLocal('token')
+//   const path = route.path
+//   if (token && !['/home', '/category'].includes(path)) {
+//     cart.updateCart()
+//   }
+// })
 </script>
 
 <style lang="less" scoped >

@@ -1,15 +1,15 @@
 <template>
   <header class="simple-header van-hairline--bottom">
-    <i v-if="!isback" class="nbicon nbfanhui" @click="goBack"></i>
+    <i v-if="!noback" class="iconfont icon-arrow-left-bold" @click="goBack"></i>
     <i v-else>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</i>
     <div class="simple-header-name">{{ name }}</div>
-    <i class="nbicon nbmore"></i>
+    <i class="iconfont icon-ellipsis"></i>
   </header>
   <div class="block" ></div>
 </template>
 
 <script>
-import { ref } from 'vue'
+
 import { useRouter } from 'vue-router'
 export default {
   props: {
@@ -28,7 +28,6 @@ export default {
   },
   emits: ['callback'],
   setup(props, ctx) {
-    const isback = ref(props.noback)
     const router = useRouter()
     const goBack = () => {
       if (!props.back) {
@@ -39,8 +38,7 @@ export default {
       ctx.emit('callback')
     }
     return {
-      goBack,
-      isback
+      goBack
     }
   }
 }

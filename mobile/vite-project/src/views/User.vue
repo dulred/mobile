@@ -22,11 +22,11 @@
         <span>账号管理</span>
         <van-icon name="arrow" />
       </li>
-      <li class="van-hairline--bottom" @click="goTo('/address', { from: 'mine' })">
+      <li class="van-hairline--bottom" @click="goTo('/address', { from: 'mine'})">
         <span>地址管理</span>
         <van-icon name="arrow" />
       </li>
-      <li @click="goTo('/about')">
+      <li  @click="goTo('/about')">
         <span>关于我们</span>
         <van-icon name="arrow" />
       </li>
@@ -47,7 +47,7 @@ const state = reactive({
 })
 
 onMounted(async () => {
-  const { data } = await getUserInfo()
+  const {data} = await getUserInfo()
   state.user = data
   state.loading = false
 })
