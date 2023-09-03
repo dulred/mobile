@@ -12,6 +12,109 @@
   resolved "https://registry.npmmirror.com/@babel/parser/-/parser-7.22.11.tgz#becf8ee33aad2a35ed5607f521fe6e72a615f905"
   integrity sha512-R5zb8eJIBPJriQtbH/htEQy4k7E2dHWlD2Y2VT07JCzwYZHBxV5ZYtM0UhXSNMT74LyxuM+b1jdL7pSesXbC/g==
 
+"@better-scroll/core@^2.3.0", "@better-scroll/core@^2.5.1":
+  version "2.5.1"
+  resolved "https://registry.npmmirror.com/@better-scroll/core/-/core-2.5.1.tgz#de53f089a2f53f51e58e5042556fe0d3e1655aa9"
+  integrity sha512-koKOuYA55dQ04FJRIVUpMGDr1hbCfWmfX0MGp1hKagkQSWSRpwblqACiwtggVauoj9aaJRJZ9hDsTM4weaavlg==
+  dependencies:
+    "@better-scroll/shared-utils" "^2.5.1"
+
+"@better-scroll/indicators@^2.3.0":
+  version "2.5.1"
+  resolved "https://registry.npmmirror.com/@better-scroll/indicators/-/indicators-2.5.1.tgz#a5d2da343fc6d0865846f1f8d2153eb423301be1"
+  integrity sha512-Hk+Y00pR6fTsu6C9HGg1yYZtsu1gAcTgcs4C9aM5h6fQANX/T2YIYrOSjZmdL+js2PTcXJWZS8VM4Xjoi1PbfQ==
+  dependencies:
+    "@better-scroll/core" "^2.5.1"
+
+"@better-scroll/infinity@^2.3.0":
+  version "2.5.1"
+  resolved "https://registry.npmmirror.com/@better-scroll/infinity/-/infinity-2.5.1.tgz#f834e9b31d4174eff25c42793efb0cf705b7fe8f"
+  integrity sha512-GKHrrasIh0KlGzhASHDo5hEEBJcDFpP4XaZGPH9Ey8+QBH6/O1ykAXS2ixkVAOTkBrv+KgFXoCUr4oN1xWeM+g==
+  dependencies:
+    "@better-scroll/core" "^2.5.1"
+
+"@better-scroll/mouse-wheel@^2.3.0":
+  version "2.5.1"
+  resolved "https://registry.npmmirror.com/@better-scroll/mouse-wheel/-/mouse-wheel-2.5.1.tgz#002d16264238122ecc7713c86eddc282ea52b79c"
+  integrity sha512-DGnrirRMY6zMM7xwgx09D/cA9A//3J1/uDkq8iBVEyE5p0sEr/keQpjEfFHGkBRa505BnbBwdbN6f5lugEDSPw==
+  dependencies:
+    "@better-scroll/core" "^2.5.1"
+
+"@better-scroll/movable@^2.3.0":
+  version "2.5.1"
+  resolved "https://registry.npmmirror.com/@better-scroll/movable/-/movable-2.5.1.tgz#65a8e0942087723172f91283363e2339ad567eaf"
+  integrity sha512-8bLPRY15bbK4K5+tjrtdaKsFFKmJx72wRdg+xz3xQGFcTD940HFkJiORSOcz8Ufue7eOJfcmreQJBw6XY+TqTw==
+  dependencies:
+    "@better-scroll/core" "^2.5.1"
+
+"@better-scroll/nested-scroll@^2.3.0":
+  version "2.5.1"
+  resolved "https://registry.npmmirror.com/@better-scroll/nested-scroll/-/nested-scroll-2.5.1.tgz#8aa07da6be3444eeaafe3f4b610f82785fd7f98a"
+  integrity sha512-3cRsARxf9tq1VWBq7YAaET0xGAmgY1ERMmnXDo2gHFrmsJoNOionlpAeHdZvKQp2jG7JrzJ1O27nGCXf40gnkw==
+  dependencies:
+    "@better-scroll/core" "^2.5.1"
+
+"@better-scroll/observe-dom@^2.3.0":
+  version "2.5.1"
+  resolved "https://registry.npmmirror.com/@better-scroll/observe-dom/-/observe-dom-2.5.1.tgz#7e69e46cba1a5b4aa36c498204e60379ac4191d8"
+  integrity sha512-TCMGFLRfpXBPIwtUV/efliUmfmrhSNI7NXdSyjdWjsLOS7dh3eFkmcom5ERVWMaXVELSmujGXLqobT+dT0C/jg==
+  dependencies:
+    "@better-scroll/core" "^2.5.1"
+
+"@better-scroll/observe-image@^2.3.0":
+  version "2.5.1"
+  resolved "https://registry.npmmirror.com/@better-scroll/observe-image/-/observe-image-2.5.1.tgz#2c8279e44fa8d24614d39b14063c0483c874827c"
+  integrity sha512-0Lhfj83o8EESwOxr8bfStCzNOokTm3KB7JeyMS8u/xl+3tyTuls9889cyAukYk4Yly1cS49pCGfj2P8YOiwtUg==
+  dependencies:
+    "@better-scroll/core" "^2.5.1"
+
+"@better-scroll/pull-down@^2.3.0":
+  version "2.5.1"
+  resolved "https://registry.npmmirror.com/@better-scroll/pull-down/-/pull-down-2.5.1.tgz#ad1c741ddda8f771767dc455906637d0567ae449"
+  integrity sha512-Y6XcGu2NlevPg3k9VBRRFvpmfoTA+rO96JGdog2qKHclIPNXnsVwsIHtZfAm9weE/f9UuC4BnB+VUFRlucfupg==
+  dependencies:
+    "@better-scroll/core" "^2.5.1"
+
+"@better-scroll/pull-up@^2.3.0":
+  version "2.5.1"
+  resolved "https://registry.npmmirror.com/@better-scroll/pull-up/-/pull-up-2.5.1.tgz#d5bcfd8343cdb0601b96484f410ee678c22a3a44"
+  integrity sha512-1hu3xSMxdB8T391KffpNZ7g93lMwZEHjfb1F1Y4KvIkciDt8nXqkGpqrZF+YwR+EJTgYcWqUO8kgmI6XXu7Pkg==
+  dependencies:
+    "@better-scroll/core" "^2.5.1"
+
+"@better-scroll/scroll-bar@^2.3.0":
+  version "2.5.1"
+  resolved "https://registry.npmmirror.com/@better-scroll/scroll-bar/-/scroll-bar-2.5.1.tgz#89f8aea8f6beec93ecefbf98e0cb9aa51322e62b"
+  integrity sha512-i6r60pWG/ztkFK2j5Gj54I0LJb2jGh5TWJNQBoW0gUkp28B+0JvBFTwZn9tF7beZCBorKR7Hvvu4O9A1TJy94Q==
+  dependencies:
+    "@better-scroll/core" "^2.5.1"
+
+"@better-scroll/shared-utils@^2.5.1":
+  version "2.5.1"
+  resolved "https://registry.npmmirror.com/@better-scroll/shared-utils/-/shared-utils-2.5.1.tgz#ed6a1b5713462fa50afd8bb7d172ca218a0b7f2e"
+  integrity sha512-AplkfSjXVYP9LZiD6JsKgmgQJ/mG4uuLmBuwLz8W5OsYc7AYTfN8kw6GqZ5OwCGoXkVhBGyd8NeC4xwYItp0aw==
+
+"@better-scroll/slide@^2.3.0":
+  version "2.5.1"
+  resolved "https://registry.npmmirror.com/@better-scroll/slide/-/slide-2.5.1.tgz#d61788b304f305915231430e7c38b22598bcb5b9"
+  integrity sha512-aDOrfsmjAcz6DXN7mDX3tPieAn195R43Yn9e3waI19TIEok/mQlI1a/kb5quqWOoxkiaZQ8xe3vx5ZTj9C+F6Q==
+  dependencies:
+    "@better-scroll/core" "^2.5.1"
+
+"@better-scroll/wheel@^2.3.0":
+  version "2.5.1"
+  resolved "https://registry.npmmirror.com/@better-scroll/wheel/-/wheel-2.5.1.tgz#941745457780584e2ccd385b1588c88c0550f2b0"
+  integrity sha512-fYLcEvkh88Z/2L+P5/+SGMunuc+HzAjGOiORIa/x21qb/knO2RFH4A/V1Rt3OIW4QluWzuFnU6jJRPlsQVZ4fg==
+  dependencies:
+    "@better-scroll/core" "^2.5.1"
+
+"@better-scroll/zoom@^2.3.0":
+  version "2.5.1"
+  resolved "https://registry.npmmirror.com/@better-scroll/zoom/-/zoom-2.5.1.tgz#f43813c9c6cf8aa0c5745fd0cf7c605416f84f1b"
+  integrity sha512-aGvFY5ooeZWS4RcxQLD+pGLpQHQxpPy0sMZV3yadcd2QK53PK9gS4Dp+BYfRv8lZ4/P2LoNEhr6Wq1DN6+uPlA==
+  dependencies:
+    "@better-scroll/core" "^2.5.1"
+
 "@esbuild/android-arm64@0.18.20":
   version "0.18.20"
   resolved "https://registry.npmmirror.com/@esbuild/android-arm64/-/android-arm64-0.18.20.tgz#984b4f9c8d0377443cc2dfcef266d02244593622"
@@ -303,6 +406,26 @@ balanced-match@^1.0.0:
   version "1.0.2"
   resolved "https://registry.npmmirror.com/balanced-match/-/balanced-match-1.0.2.tgz#e83e3a7e3f300b34cb9d87f615fa0cbf357690ee"
   integrity sha512-3oSeUO0TMV67hN1AmbXsK4yaqU7tjiHlbxRDZOpH0KW9+CeX4bRAaX0Anxt0tx2MrpRpWwQaPwIlISEJhYU5Pw==
+
+better-scroll@2.3.0:
+  version "2.3.0"
+  resolved "https://registry.npmmirror.com/better-scroll/-/better-scroll-2.3.0.tgz#c3be6c2894fd250bf59ea19ff8a4deb9aeeec0f9"
+  integrity sha512-/NHi+wiWQAq02IiPAHquTDAxIZtFCK0J/29hKreC0ZpJyhx884alKoJF0VSz3TAxXzl7lN6Xy4aQDYPaVR65jg==
+  dependencies:
+    "@better-scroll/core" "^2.3.0"
+    "@better-scroll/indicators" "^2.3.0"
+    "@better-scroll/infinity" "^2.3.0"
+    "@better-scroll/mouse-wheel" "^2.3.0"
+    "@better-scroll/movable" "^2.3.0"
+    "@better-scroll/nested-scroll" "^2.3.0"
+    "@better-scroll/observe-dom" "^2.3.0"
+    "@better-scroll/observe-image" "^2.3.0"
+    "@better-scroll/pull-down" "^2.3.0"
+    "@better-scroll/pull-up" "^2.3.0"
+    "@better-scroll/scroll-bar" "^2.3.0"
+    "@better-scroll/slide" "^2.3.0"
+    "@better-scroll/wheel" "^2.3.0"
+    "@better-scroll/zoom" "^2.3.0"
 
 binary-extensions@^2.0.0:
   version "2.2.0"

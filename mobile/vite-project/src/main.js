@@ -22,5 +22,18 @@ app.use(CustomComponentPlugin);
 
 // 注册 store
 app.use(createPinia())
+
+// 全局过滤器
+app.config.globalProperties.$filters = {
+    prefix(url) {
+      if (url && url.startsWith('http')) {
+        return url
+      } else {
+        url = `http://192.168.0.110:8081/images${url}` //启动的nginx静态服务器， 443端口 SSL/TLS传输
+        return url
+      }
+    }
+  }
+
 // 挂载 Vue 实例
 app.mount('#app')

@@ -52,7 +52,7 @@ app.config.globalProperties.$filters = {
     if (url && url.startsWith('http')) {
       return url
     } else {
-      url = `http://backend-api-01.newbee.ltd${url}`
+      url = `https://192.168.0.110/images${url}` 
       return url
     }
   }

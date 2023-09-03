@@ -1,6 +1,6 @@
 package com.example.ggb.service.impl;
 
-import com.example.ggb.common.Contants;
+import com.example.ggb.common.Constants;
 import com.example.ggb.common.ServiceResultEnum;
 import com.example.ggb.controller.param.MallUserUpdateParam;
 import com.example.ggb.entity.MallUser;
@@ -114,7 +114,7 @@ public class MallUserServiceImpl  implements MallUserService {
         MallUser registerUser  = mallUserMapper.selectByLoginName(loginName);
         registerUser = new MallUser();
         registerUser.setPasswordSha256(password);
-        registerUser.setIntroduceSign(Contants.USER_INTRO);
+        registerUser.setIntroduceSign(Constants.USER_INTRO);
         registerUser.setLoginName(loginName);
         registerUser.setNickName(loginName);
         if(mallUserMapper.insertSelective(registerUser) > 0){

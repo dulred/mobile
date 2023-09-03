@@ -1,18 +1,23 @@
 <template>
   <div>
-    <header class="home-header wrap" :class="{'active' : state.headerScroll}">
-      <router-link tag="i" to="./category"><i class="nbicon nbmenu2"></i></router-link>
+    <header class="home-header" :class="{'active' : state.headerScroll}">
+      <router-link  to="category">
+        <i class="iconfont icon-fenlei1" ></i>
+      </router-link>
       <div class="header-search">
-        <span class="app-name">新蜂商城</span>
-        <i class="iconfont icon-search"></i>
-        <router-link tag="span" class="search-title" to="./product-list?from=home">山河无恙，人间皆安</router-link>
+        <span class="app-name">努努商城</span>  
+        <van-icon name="search" />
+        <router-link to="product-list?from=home">
+          <span class="search-title" >山河无恙，人间皆安</span>
+        </router-link>
       </div>
-      <router-link class="login" tag="span" to="./login" v-if="!state.isLogin">登录</router-link>
-      <router-link class="login" tag="span" to="./user" v-else>
-        <van-icon name="manager-o" />
+      <router-link  to="login"  v-if="!state.isLogin">
+        <span  class="login">登录</span>
+      </router-link>
+      <router-link to="user" v-else>
+        <span  class="login"><van-icon name="manager-o" /></span>
       </router-link>
     </header>
-    <nav-bar />
     <swiper :list="state.swiperList"></swiper>
     <div class="category-list">
       <div v-for="item in state.categoryList" v-bind:key="item.categoryId" @click="tips">
@@ -62,6 +67,7 @@
         </div>
       </van-skeleton>
     </div>
+    <nav-bar />
   </div>
 </template>
 
@@ -70,7 +76,7 @@ import { reactive, onMounted, nextTick } from 'vue'
 import { useRouter } from 'vue-router'
 import swiper from '@/components/Swiper.vue'
 import navBar from '@/components/NavBar.vue'
-import { getHome } from '@/service/home'
+import { getHome } from '@/request/home'
 import { getLocal } from '@/common/js/utils'
 import { showLoadingToast, closeToast, showToast } from 'vant'
 import { useCartStore } from '@/stores/cart'
@@ -133,7 +139,7 @@ onMounted(async () => {
   if (token) {
     state.isLogin = true
     // 获取购物车数据.
-    cart.updateCart()
+    // cart.updateCart()
   }
   showLoadingToast({
     message: '加载中...',
@@ -149,7 +155,7 @@ onMounted(async () => {
 })
 
 nextTick(() => {
-  document.body.addEventListener('scroll', () => {
+    window.addEventListener('scroll', () => {
     let scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop
     scrollTop > 100 ? state.headerScroll = true : state.headerScroll = false
   })
@@ -178,22 +184,18 @@ const tips = () => {
       font-size: 15px;
       color: #fff;
       z-index: 10000;
-      .nbmenu2 {
+      .icon-fenlei1 {
         color: @primary;
+        font-size: 22px;
       }
-      &.active {
-        background: @primary;
-        .nbmenu2 {
-          color: #fff;
-        }
-        .login {
-          color: #fff;
-        }
-      }
-
+      .van-icon-search:before {
+        position: relative;
+        top: 50%;
+        transform: translateY(-50%);
+    }
       .header-search {
           display: flex;
-          width: 74%;
+          width: 78%;
           line-height: 20px;
           margin: 10px 0;
           padding: 5px 0;
@@ -201,11 +203,12 @@ const tips = () => {
           background: rgba(255, 255, 255, .7);
           border-radius: 20px;
           .app-name {
-              padding: 0 10px;
+              padding: 0 8px;
               color: @primary;
-              font-size: 20px;
+              font-size: 16px;
               font-weight: bold;
-              border-right: 1px solid #666;
+              border-right: 1px solid #999;
+              margin-right: 3px;
           }
           .icon-search {
               padding: 0 10px;
@@ -229,6 +232,17 @@ const tips = () => {
           vertical-align: -3px;
         }
       }
+// 滚动下滑
+      &.active {
+        background: @primary;
+        .icon-fenlei1 {
+          color: #fff;
+        }
+        .login {
+          color: #fff;
+        }
+      }
+
   }
   .category-list {
     display: flex;

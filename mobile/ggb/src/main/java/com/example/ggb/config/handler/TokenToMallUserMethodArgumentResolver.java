@@ -8,7 +8,7 @@
  */
 package com.example.ggb.config.handler;
 
-import com.example.ggb.common.Contants;
+import com.example.ggb.common.Constants;
 import com.example.ggb.common.MallException;
 import com.example.ggb.common.ServiceResultEnum;
 import com.example.ggb.config.annotation.TokenToMallUser;
@@ -49,7 +49,7 @@ public class TokenToMallUserMethodArgumentResolver implements HandlerMethodArgum
         if (parameter.getParameterAnnotation(TokenToMallUser.class) instanceof TokenToMallUser) {
             MallUser mallUser = null;
             String token = webRequest.getHeader("token");
-            if (null != token && !"".equals(token) && token.length() == Contants.TOKEN_LENGTH) {
+            if (null != token && !"".equals(token) && token.length() == Constants.TOKEN_LENGTH) {
                 MallUserToken mallUserToken = mallUserTokenMapper.selectByToken(token);
                 if (mallUserToken == null || mallUserToken.getExpireTime().getTime() <= System.currentTimeMillis()) {
                     MallException.fail(ServiceResultEnum.TOKEN_EXPIRE_ERROR.getResult());

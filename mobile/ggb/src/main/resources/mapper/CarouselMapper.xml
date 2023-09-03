@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.ggb.repository.CarouselMapper">
+
+    <resultMap id="BaseResultMap" type="com.example.ggb.entity.Carousel">
+            <id column="carousel_id" jdbcType="INTEGER" property="carouselId"></id>
+            <result column="carousel_url" jdbcType="VARBINARY" property="carouselUrl"></result>
+            <result column="redirect_url" jdbcType="VARBINARY" property="redirectUrl"></result>
+            <result column="carousel_rank" jdbcType="INTEGER" property="carouselRank"></result>
+            <result column="is_deleted" jdbcType="TINYINT" property="isDeleted"></result>
+            <result column="create_time" jdbcType="TIMESTAMP" property="createTime"></result>
+             <result column="create_user" jdbcType="INTEGER" property="createUser"></result>
+            <result column="update_time" jdbcType="TIMESTAMP" property="updateTime"></result>
+            <result column="update_user" jdbcType="INTEGER" property="updateUser"></result>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        carousel_id,carousel_url,redirect_url,carousel_rank,is_deleted,
+            create_time,create_user,update_time,update_user
+    </sql>
+
+    <select id="findCarouselList" parameterType="Map" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from mall_carousel
+        where is_deleted = 0
+        order by carousel_rank desc
+        <if test="start!=null and limit !=null">
+            limit #{start},#{limit}
+        </if>
+    </select>
+
+
+    <select id="findCarouselsByNum" parameterType="int" resultMap="BaseResultMap">
+        select
+            <include refid="Base_Column_List" />
+            from mall_carousel
+            where is_deleted = 0
+            order by carousel_rank desc
+            limit #{number}
+    </select>
+
+
+
+</mapper>

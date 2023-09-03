@@ -1,6 +1,6 @@
 package com.example.ggb.controller;
 
-import com.example.ggb.common.Contants;
+import com.example.ggb.common.Constants;
 import com.example.ggb.common.ServiceResultEnum;
 import com.example.ggb.config.annotation.TokenToMallUser;
 import com.example.ggb.controller.param.MallUserLoginParam;
@@ -60,7 +60,7 @@ public class MallPersonalAPI {
 
         logger.info("login api,loginName={},loginResult={}", mallUserLoginParam.getLoginName(), loginResult);
         //登录成功
-        if (StringUtils.hasText(loginResult) && loginResult.length() == Contants.TOKEN_LENGTH ){
+        if (StringUtils.hasText(loginResult) && loginResult.length() == Constants.TOKEN_LENGTH ){
             Result result = ResultGenerator.genSuccessResult();
             result.setData(loginResult);
             return result;  
