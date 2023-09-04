@@ -2,7 +2,6 @@ package com.example.ggb.config;
 
 import com.example.ggb.common.MallException;
 import com.example.ggb.common.ServiceResultEnum;
-import com.example.ggb.config.exception.ParamsException;
 import com.example.ggb.util.Result;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
@@ -35,13 +34,6 @@ public class MallExceptionHandler {
 
     }
 
-    @ExceptionHandler(ParamsException.class)
-    public Result handleMyException(ParamsException e) {
-        Result result = new Result();
-        result.setResultCode(411);
-        result.setMessage(e.getMessage());
-        return result;
-    }
 
 
 

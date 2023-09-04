@@ -6,7 +6,7 @@
         <i class="iconfont icon-arrow-left-bold" @click="goHome"></i>
         <div class="header-search">
           <van-icon name="search" />
-          <router-link class="search-title" to="./product-list?from=category">
+          <router-link class="search-title" to="product-list?from=category">
             全场50元起步
           </router-link>
         </div>
@@ -34,7 +34,7 @@
                       <p class="catogory-title">{{products.categoryName}}</p>
                       <div class="product-item" v-for="(product, index) in products.thirdLevelCategoryVOS" :key="index" @click="selectProduct(product)">
                         <img src="http://192.168.0.110:8081/images/goods-img/apple.png" class="product-img"/>
-                        <p v-text="product.categoryName" class="product-title"></p>
+                        <p  class="product-title">{{product.categoryName  }}</p>
                       </div>
                     </div>
                   </div>
