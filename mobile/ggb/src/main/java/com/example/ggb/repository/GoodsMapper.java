@@ -14,4 +14,6 @@ public interface GoodsMapper {
 
     int getTotalMallGoodsBySearch(PageQueryUtil pageUtil);
 
+    MallGoods selectByPrimaryKey(Long goodsId);
+
 }

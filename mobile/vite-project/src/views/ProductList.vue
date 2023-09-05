@@ -2,9 +2,9 @@
   <div class="product-list-wrap">
     <div class="product-list-content">
       <header class="category-header wrap">
-        <i class="nbicon nbfanhui" @click="goBack"></i>
+        <i class="iconfont icon-arrow-left-bold" @click="goBack"></i>
         <div class="header-search">
-          <i class="nbicon nbSearch"></i>
+          <van-icon name="search" />
           <input
             type="text"
             class="search-title"
@@ -48,7 +48,7 @@
 <script setup>
 import { reactive } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
-import { search } from '@/service/good'
+import { search } from '@/request/good'
 const route = useRoute()
 const router = useRouter()
 const state = reactive({
@@ -72,7 +72,8 @@ const init = async () => {
     return
   }
   const { data, data: { list } } = await search({ pageNumber: state.page, goodsCategoryId: categoryId, keyword: state.keyword, orderBy: state.orderBy })
-  
+
+
   state.productList = state.productList.concat(list)
   state.totalPage = data.totalPage
   state.loading = false;
@@ -120,6 +121,12 @@ const changeTab = ({ name }) => {
 <style lang="less" scoped>
   @import '@/common/less/mixin';
   .product-list-content {
+
+    .van-icon-search:before {
+        position: relative;
+        top: 50%;
+        transform: translateY(-50%);
+    }
     position: fixed;
     left: 0;
     top: 0;
@@ -152,10 +159,6 @@ const changeTab = ({ name }) => {
         color: #232326;
         background: #F7F7F7;
         .borderRadius(20px);
-        .nbSearch {
-          padding: 0 5px 0 20px;
-          font-size: 17px;
-        }
         .search-title {
           font-size: 12px;
           color: #666;

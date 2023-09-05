@@ -1,30 +1,11 @@
 <template>
-    <a :href="to" @click="navigate">
-      <slot></slot>
-    </a>
+  <van-tabs >
+  <van-tab title="标签 1" name="a">内容 1</van-tab>
+  <van-tab title="标签 2" name="b">内容 2</van-tab>
+  <van-tab title="标签 3" name="c">内容 3</van-tab>
+</van-tabs>
   </template>
   
   <script>
-  import { useRouter } from 'vue-router';
-  
-  export default {
-    props: {
-      to: {
-        type: String,
-        required: true
-      }
-    },
-    setup(props) {
-      const router = useRouter();
-  
-      function navigate(event) {
-        event.preventDefault();
-        router.push(props.to);
-      }
-  
-      return {
-        navigate
-      };
-    }
-  }
+
   </script>

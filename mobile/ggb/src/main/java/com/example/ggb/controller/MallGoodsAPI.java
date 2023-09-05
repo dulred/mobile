@@ -3,24 +3,21 @@ package com.example.ggb.controller;
 
 import com.example.ggb.common.Constants;
 import com.example.ggb.common.MallException;
+import com.example.ggb.common.ServiceResultEnum;
 import com.example.ggb.config.annotation.TokenToMallUser;
+import com.example.ggb.controller.vo.MallGoodsDetailVO;
 import com.example.ggb.controller.vo.MallSearchGoodsVO;
+import com.example.ggb.entity.MallGoods;
 import com.example.ggb.entity.MallUser;
 import com.example.ggb.service.MallGoodsService;
-import com.example.ggb.util.PageQueryUtil;
-import com.example.ggb.util.PageResult;
-import com.example.ggb.util.Result;
-import com.example.ggb.util.ResultGenerator;
+import com.example.ggb.util.*;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.util.StringUtils;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import java.util.HashMap;
@@ -35,7 +32,7 @@ public class MallGoodsAPI {
     private static final Logger logger = LoggerFactory.getLogger(MallGoodsAPI.class);
 
     @Resource
-    private MallGoodsService newBeeMallGoodsService;
+    private MallGoodsService MallGoodsService;
 
     @GetMapping("/search")
     @ApiOperation(value = "商品搜索接口", notes = "根据关键字和分类id进行搜索")
@@ -69,9 +66,29 @@ public class MallGoodsAPI {
         params.put("goodsSellStatus", Constants.SELL_STATUS_UP);
         //封装商品数据
         PageQueryUtil pageUtil = new PageQueryUtil(params);
-        return ResultGenerator.genSuccessResult(newBeeMallGoodsService.searchMallGoods(pageUtil));
+        return ResultGenerator.genSuccessResult(MallGoodsService.searchMallGoods(pageUtil));
     }
 
+
+    @GetMapping("/goods/detail/{goodsId}")
+    @ApiOperation(value = "商品详情接口", notes = "传参为商品id")
+    public Result<MallGoodsDetailVO> goodsDetail(@ApiParam(value = "商品id") @PathVariable("goodsId") Long goodsId, @TokenToMallUser MallUser loginMallUser) {
+        logger.info("goods detail api,goodsId={},userId={}", goodsId, loginMallUser.getUserId());
+        if (goodsId < 1) {
+            return ResultGenerator.genFailResult("参数异常");
+        }
+        MallGoods goods = MallGoodsService.getMallGoodsById(goodsId);
+        if (Constants.SELL_STATUS_UP != goods.getGoodsSellStatus()) {
+            MallException.fail(ServiceResultEnum.GOODS_PUT_DOWN.getResult());
+        }
+        MallGoodsDetailVO goodsDetailVO = new MallGoodsDetailVO();
+        BeanUtil.copyProperties(goods, goodsDetailVO);
+        System.out.println(goods.getGoodsCarousel());
+        System.out.println(goods.getGoodsCarousel().split(","));
+        goodsDetailVO.setGoodsCarouselList(goods.getGoodsCarousel().split(","));
+        return ResultGenerator.genSuccessResult(goodsDetailVO);
+
+    }
 
 
 }

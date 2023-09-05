@@ -8,6 +8,8 @@
  */
 package com.example.ggb.service.impl;
 
+import com.example.ggb.common.MallException;
+import com.example.ggb.common.ServiceResultEnum;
 import com.example.ggb.controller.vo.MallSearchGoodsVO;
 import com.example.ggb.entity.MallGoods;
 import com.example.ggb.repository.GoodsCategoryMapper;
@@ -55,4 +57,15 @@ public class MallGoodsServiceImpl implements MallGoodsService {
         PageResult pageResult = new PageResult(MallSearchGoodsVOS, total, pageUtil.getLimit(), pageUtil.getPage());
         return pageResult;
     }
+
+    @Override
+    public MallGoods getMallGoodsById(Long id) {
+        MallGoods mallGoods = goodsMapper.selectByPrimaryKey(id);
+        if (mallGoods == null) {
+           MallException.fail(ServiceResultEnum.GOODS_NOT_EXIST.getResult());
+        }
+        return mallGoods;
+    }
+
+
 }
