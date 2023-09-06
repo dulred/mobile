@@ -923,22 +923,6 @@ CREATE TABLE `mall_shopping_cart_item`  (
 ) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
--- Table structure for mall_test
--- ----------------------------
-DROP TABLE IF EXISTS `mall_test`;
-CREATE TABLE `mall_test`  (
-  `test_id` bigint(0) NOT NULL AUTO_INCREMENT COMMENT '测试主键id',
-  `test_name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-  `password_Sha256` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-  PRIMARY KEY (`test_id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
-
--- ----------------------------
--- Records of mall_test
--- ----------------------------
-INSERT INTO `mall_test` VALUES (1, 'dulred', '8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92');
-
--- ----------------------------
 -- Table structure for mall_user
 -- ----------------------------
 DROP TABLE IF EXISTS `mall_user`;

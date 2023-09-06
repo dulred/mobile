@@ -7,7 +7,6 @@ import com.example.ggb.entity.MallUser;
 import com.example.ggb.entity.MallUserToken;
 import com.example.ggb.repository.MallUserMapper;
 import com.example.ggb.repository.MallUserTokenMapper;
-import com.example.ggb.repository.TestUserMapper;
 import com.example.ggb.service.MallUserService;
 import com.example.ggb.util.NumberUtil;
 import com.example.ggb.util.SHA256Util;
@@ -23,8 +22,7 @@ public class MallUserServiceImpl  implements MallUserService {
     MallUserMapper mallUserMapper;
     @Autowired
     MallUserTokenMapper mallUserTokenMapper;
-    @Autowired
-    TestUserMapper testUserMapper;
+
 
     /**
      * 登录

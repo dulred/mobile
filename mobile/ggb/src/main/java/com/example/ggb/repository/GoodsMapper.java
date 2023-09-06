@@ -16,4 +16,5 @@ public interface GoodsMapper {
 
     MallGoods selectByPrimaryKey(Long goodsId);
 
+
 }

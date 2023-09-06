@@ -13,6 +13,7 @@ import java.io.Serializable;
 @Data
 public class SaveCartItemParam implements Serializable {
 
+
     @ApiModelProperty("商品数量")
     private Integer goodsCount;
 
