@@ -47,7 +47,7 @@ public class MallShoppingCartServiceImpl  implements MallShoppingCartService {
             return ServiceResultEnum.GOODS_NOT_EXIST.getResult();
         }
         int totalItem = mallShoppingCartItemMapper.selectCountByUserId(userId);
-        //超出单个商品的最大数量
+        //小于单个商品的最小数量
         if (saveCartItemParam.getGoodsCount() < 1) {
             return ServiceResultEnum.SHOPPING_CART_ITEM_NUMBER_ERROR.getResult();
         }
@@ -55,7 +55,7 @@ public class MallShoppingCartServiceImpl  implements MallShoppingCartService {
         if (saveCartItemParam.getGoodsCount() > Constants.SHOPPING_CART_ITEM_LIMIT_NUMBER) {
             return ServiceResultEnum.SHOPPING_CART_ITEM_LIMIT_NUMBER_ERROR.getResult();
         }
-        //超出最大数量
+        //总的项数超出最大数量
         if (totalItem > Constants.SHOPPING_CART_ITEM_TOTAL_NUMBER) {
             return ServiceResultEnum.SHOPPING_CART_ITEM_TOTAL_NUMBER_ERROR.getResult();
         }
@@ -182,9 +182,7 @@ public class MallShoppingCartServiceImpl  implements MallShoppingCartService {
     @Override
     public List<MallShoppingCartItemVO> getCartItemsForSettle(List<Long> cartItemIds, Long mallUserId) {
         List<MallShoppingCartItemVO> mallShoppingCartItemVOS = new ArrayList<>();
-        if (CollectionUtils.isEmpty(cartItemIds)) {
-            MallException.fail("购物项不能为空");
-        }
+
         List<MallShoppingCartItem> mallShoppingCartItems = mallShoppingCartItemMapper.selectByUserIdAndCartItemIds(mallUserId, cartItemIds);
         if (CollectionUtils.isEmpty(mallShoppingCartItems)) {
             MallException.fail("购物项不能为空");
@@ -192,8 +190,10 @@ public class MallShoppingCartServiceImpl  implements MallShoppingCartService {
         if (mallShoppingCartItems.size() != cartItemIds.size()) {
             MallException.fail("参数异常");
         }
+
         return getMallShoppingCartItemVOS(mallShoppingCartItemVOS, mallShoppingCartItems);
     }
+
 
 
 

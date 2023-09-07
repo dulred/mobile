@@ -1,7 +1,9 @@
 package com.example.ggb.repository;
 
 import com.example.ggb.entity.MallGoods;
+import com.example.ggb.entity.StockNumDTO;
 import com.example.ggb.util.PageQueryUtil;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -16,5 +18,5 @@ public interface GoodsMapper {
 
     MallGoods selectByPrimaryKey(Long goodsId);
 
-
+    int updateStockNum(@Param("stockNumDTOS") List<StockNumDTO> stockNumDTOS);
 }

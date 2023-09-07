@@ -33,6 +33,7 @@ public interface MallShoppingCartItemMapper {
 
     List<MallShoppingCartItem> selectByUserIdAndCartItemIds(@Param("mallUserId") Long mallUserId, @Param("cartItemIds") List<Long> cartItemIds);
 
+    int deleteBatch(List<Long> ids);
 
 
 }
