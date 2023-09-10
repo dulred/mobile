@@ -31,4 +31,24 @@
     </insert>
 
 
+    <select id="selectByOrderId" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from mall_order_item
+        where order_id = #{orderItemId,jdbcType=BIGINT}
+    </select>
+
+    <select id="selectByOrderIds" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from mall_order_item
+        where order_id
+        in
+        <foreach item="id" collection="orderIds" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </select>
+
+
+
 </mapper>

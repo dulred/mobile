@@ -54,7 +54,39 @@ const router = createRouter({
         name: 'product',
         component: () => import('@/views/ProductDetail.vue'),
       },
+      {
+        path: '/cart/',
+        name: 'cart',
+        component: () => import('@/views/Cart.vue'),
+      },
+      {
+        path: '/create-order',
+        name: 'create-order',
+        component: () => import('@/views/CreateOrder.vue')
+      },
+      {
+        path: '/address',
+        name: 'address',
+        component: () => import('@/views/Address.vue')
+      },
+      {
+        path: '/address-edit',
+        name: 'address-edit',
+        component: () => import('@/views/AddressEdit.vue'),
+      },
+      {
+        path: '/order',
+        name: 'order',
+        component: () => import('@/views/Order.vue'),
+      },
+      {
+        path: '/order-detail',
+        name: 'order-detail',
+        component: () => import('@/views/OrderDetail.vue'),
+      },
     ]
   })
+
+  
   
   export default router // 将路由实例抛出

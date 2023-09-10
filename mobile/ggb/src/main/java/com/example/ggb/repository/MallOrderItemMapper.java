@@ -20,6 +20,20 @@ public interface MallOrderItemMapper {
      */
     int insertBatch(@Param("orderItems") List<MallOrderItem> orderItems);
 
+    /**
+     * 根据订单id获取订单项列表
+     *
+     * @param orderId
+     * @return
+     */
+    List<MallOrderItem> selectByOrderId(Long orderId);
 
+    /**
+     * 根据订单ids获取订单项列表
+     *
+     * @param orderIds
+     * @return
+     */
+    List<MallOrderItem> selectByOrderIds(@Param("orderIds") List<Long> orderIds);
 
 }

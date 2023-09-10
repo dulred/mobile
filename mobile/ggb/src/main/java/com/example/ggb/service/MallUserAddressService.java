@@ -1,9 +1,21 @@
 
 package com.example.ggb.service;
 
+import com.example.ggb.controller.vo.MallUserAddressVO;
 import com.example.ggb.entity.MallUserAddress;
 
+import java.util.List;
+
 public interface MallUserAddressService {
+
+
+    /**
+     * 获取我的收货地址
+     *
+     * @param userId
+     * @return
+     */
+    List<MallUserAddressVO> getMyAddresses(Long userId);
 
 
     /**
@@ -14,6 +26,38 @@ public interface MallUserAddressService {
      */
     MallUserAddress getMallUserAddressById(Long addressId);
 
+    /**
+     * 获取我的默认收货地址
+     *
+     * @param userId
+     * @return
+     */
+    MallUserAddress getMyDefaultAddressByUserId(Long userId);
 
 
+    /**
+     * 保存收货地址
+     *
+     * @param mallUserAddress
+     * @return
+     */
+    Boolean saveUserAddress(MallUserAddress mallUserAddress);
+
+
+    /**
+     * 修改收货地址
+     *
+     * @param mallUserAddress
+     * @return
+     */
+    Boolean updateMallUserAddress(MallUserAddress mallUserAddress);
+
+
+    /**
+     * 删除收货地址
+     *
+     * @param addressId
+     * @return
+     */
+    Boolean deleteById(Long addressId);
 }

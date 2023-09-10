@@ -5,18 +5,24 @@ import axios from "@/request/axios";
  * @author dulred
  * @date 27/08/2023  
  */
-export function login(params){
-    return axios.post('/user/login',params)
-}
-
-export function getUserInfo (){
-    return axios.get("/user/info")
-}
-
-export function EditUserInfo (params){
-    return axios.put("/user/info",params);
-}
-
-export function logout (){
-    return axios.get("/user/logout");
-}
+export function getUserInfo() {
+    return axios.get('/user/info');
+  }
+  
+  export function EditUserInfo(params) {
+    return axios.put('/user/info', params);
+  }
+  
+  export function login(params) {
+    return axios.post('/user/login', params);
+  }
+  
+  export function logout() {
+    return axios.post('/user/logout')
+  }
+  
+  export function register(params) {
+    return axios.post('/user/register', params);
+  }
+  
+  

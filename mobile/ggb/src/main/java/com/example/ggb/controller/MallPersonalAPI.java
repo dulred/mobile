@@ -151,7 +151,7 @@ public class MallPersonalAPI {
      * @author dulred
      * @date 2023/08/31
      */
-    @GetMapping("/user/logout")
+    @PostMapping("/user/logout")
     @ApiOperation("用户登出")
     public Result<String> logout (@TokenToMallUser MallUser loginMallUser){
 

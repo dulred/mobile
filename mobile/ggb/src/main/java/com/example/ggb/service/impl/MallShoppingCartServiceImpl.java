@@ -181,6 +181,7 @@ public class MallShoppingCartServiceImpl  implements MallShoppingCartService {
 
     @Override
     public List<MallShoppingCartItemVO> getCartItemsForSettle(List<Long> cartItemIds, Long mallUserId) {
+
         List<MallShoppingCartItemVO> mallShoppingCartItemVOS = new ArrayList<>();
 
         List<MallShoppingCartItem> mallShoppingCartItems = mallShoppingCartItemMapper.selectByUserIdAndCartItemIds(mallUserId, cartItemIds);

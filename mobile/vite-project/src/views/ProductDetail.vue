@@ -71,9 +71,9 @@ nextTick(() => {
   content.scrollTop = 0
 })
 
-const goBack = () => {
-  router.go(-1)
-}
+// const goBack = () => {
+//   router.go(-1)
+// }
 
 const goTo = () => {
   router.push({ path: '/cart' })
@@ -86,7 +86,11 @@ const handleAddCart = async () => {
 }
 
 const goToCart = async () => {
-  await addCart({ goodsCount: 1, goodsId: state.detail.goodsId })
+  const { resultCode } = await addCart({ goodsCount: 1, goodsId: state.detail.goodsId })
+  if (resultCode == 200 ) {showSuccessToast('添加成功')}
+  else{
+    showSuccessToast('添加失败')
+  }
   cart.updateCart()
   router.push({ path: '/cart' })
 }
