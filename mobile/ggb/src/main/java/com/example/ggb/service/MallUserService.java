@@ -1,6 +1,8 @@
 package com.example.ggb.service;
 
-import com.example.ggb.controller.param.MallUserUpdateParam;
+import com.example.ggb.controller.mall.param.MallUserUpdateParam;
+import com.example.ggb.util.PageQueryUtil;
+import com.example.ggb.util.PageResult;
 
 public interface MallUserService {
 
@@ -54,10 +56,14 @@ public interface MallUserService {
     /**
      * 后台分页
      *
-     * @param pageUtil
-     * @return
+     * @param pageQueryUt
+     * @return @return {@code PageResult }
+     * @author dulred
+     * @date 2023/10/09
      */
-   //  PageResult getNewBeeMallUsersPage(PageQueryUtil pageUtil);
-    
+    //  PageResult getNewBeeMallUsersPage(PageQueryUtil pageUtil);
+
+
+ PageResult  getMallUsersPage (PageQueryUtil pageQueryUt);
 
 }

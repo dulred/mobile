@@ -22,5 +22,12 @@ public interface MallOrderMapper {
     List<MallOrder> findMallOrderList(PageQueryUtil pageUtil);
     int closeOrder(@Param("orderIds") List<Long> orderIds, @Param("orderStatus") int orderStatus);
 
+    List<MallOrder> selectByPrimaryKeys(@Param("orderIds") List<Long> orderIds);
+    MallOrder selectByPrimaryKey(Long orderId);
+
+    int checkOut(@Param("orderIds") List<Long> orderIds);
+
+
+    int checkDone(@Param("orderIds") List<Long> asList);
 
 }

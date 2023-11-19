@@ -29,7 +29,7 @@ app.config.globalProperties.$filters = {
       if (url && url.startsWith('http')) {
         return url
       } else {
-        url = `http://192.168.0.110:8081/images${url}` //启动的nginx静态服务器， 443端口 SSL/TLS传输
+        url = `http://192.168.1.4:8081/images${url}` //启动的nginx静态服务器， 443端口 SSL/TLS传输
         return url
       }
     }

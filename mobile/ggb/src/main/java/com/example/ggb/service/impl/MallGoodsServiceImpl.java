@@ -8,9 +8,11 @@
  */
 package com.example.ggb.service.impl;
 
+import com.example.ggb.common.MallCategoryLevelEnum;
 import com.example.ggb.common.MallException;
 import com.example.ggb.common.ServiceResultEnum;
-import com.example.ggb.controller.vo.MallSearchGoodsVO;
+import com.example.ggb.controller.mall.vo.MallSearchGoodsVO;
+import com.example.ggb.entity.GoodsCategory;
 import com.example.ggb.entity.MallGoods;
 import com.example.ggb.repository.GoodsCategoryMapper;
 import com.example.ggb.repository.GoodsMapper;
@@ -23,6 +25,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -65,6 +68,60 @@ public class MallGoodsServiceImpl implements MallGoodsService {
            MallException.fail(ServiceResultEnum.GOODS_NOT_EXIST.getResult());
         }
         return mallGoods;
+    }
+
+    @Override
+    public String saveMallGoods(MallGoods mallGood) {
+
+        GoodsCategory goodsCategory = goodsCategoryMapper.selectByPrimaryKey(mallGood.getGoodsCategoryId());
+        // 分类不存在或者不是三级分类，则该参数字段异常
+        if (goodsCategory == null || goodsCategory.getCategoryLevel().intValue() != MallCategoryLevelEnum.LEVEL_THREE.getLevel()) {
+            return ServiceResultEnum.GOODS_CATEGORY_ERROR.getResult();
+        }
+        if (goodsMapper.selectByCategoryIdAndName(mallGood.getGoodsName(), mallGood.getGoodsCategoryId()) != null) {
+            return ServiceResultEnum.SAME_GOODS_EXIST.getResult();
+        }
+        if (goodsMapper.insertSelective(mallGood) > 0) {
+            return ServiceResultEnum.SUCCESS.getResult();
+        }
+        return ServiceResultEnum.DB_ERROR.getResult();
+
+    }
+
+    @Override
+    public String updateMallGoods(MallGoods mallGood) {
+        GoodsCategory goodsCategory = goodsCategoryMapper.selectByPrimaryKey(mallGood.getGoodsCategoryId());
+        // 分类不存在或者不是三级分类，则该参数字段异常
+        if (goodsCategory == null || goodsCategory.getCategoryLevel().intValue() != MallCategoryLevelEnum.LEVEL_THREE.getLevel()) {
+            return ServiceResultEnum.GOODS_CATEGORY_ERROR.getResult();
+        }
+        MallGoods temp = goodsMapper.selectByPrimaryKey(mallGood.getGoodsId());
+        if (temp == null) {
+            return ServiceResultEnum.DATA_NOT_EXIST.getResult();
+        }
+        MallGoods temp2 = goodsMapper.selectByCategoryIdAndName(mallGood.getGoodsName(), mallGood.getGoodsCategoryId());
+        if (temp2 != null && !temp2.getGoodsId().equals(mallGood.getGoodsId())) {
+            //name和分类id相同且不同id 不能继续修改
+            return ServiceResultEnum.SAME_GOODS_EXIST.getResult();
+        }
+        mallGood.setUpdateTime(new Date());
+        if (goodsMapper.updateByPrimaryKeySelective(mallGood) > 0) {
+            return ServiceResultEnum.SUCCESS.getResult();
+        }
+        return ServiceResultEnum.DB_ERROR.getResult();
+    }
+
+    @Override
+    public Boolean batchUpdateSellStatus(Long[] ids, int sellStatus) {
+        return goodsMapper.batchUpdateSellStatus(ids, sellStatus) > 0;
+    }
+
+    @Override
+    public PageResult getMallGoodsPage(PageQueryUtil pageQueryUtil) {
+        List<MallGoods> goodsList = goodsMapper.findNewBeeMallGoodsList(pageQueryUtil);
+        int total = goodsMapper.getTotalNewBeeMallGoods(pageQueryUtil);
+        PageResult pageResult = new PageResult(goodsList, total, pageQueryUtil.getLimit(), pageQueryUtil.getPage());
+        return pageResult;
     }
 
 

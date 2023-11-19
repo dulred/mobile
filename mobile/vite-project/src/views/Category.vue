@@ -33,7 +33,7 @@
                     <div class="category-list" v-for="(products, index) in category.secondLevelCategoryVOS" :key="index">
                       <p class="catogory-title">{{products.categoryName}}</p>
                       <div class="product-item" v-for="(product, index) in products.thirdLevelCategoryVOS" :key="index" @click="selectProduct(product)">
-                        <img src="http://192.168.0.110:8081/images/goods-img/apple.png" class="product-img"/>
+                        <img src="http://192.168.1.4:8081/images/goods-img/apple.png" class="product-img"/>
                         <p  class="product-title">{{product.categoryName  }}</p>
                       </div>
                     </div>

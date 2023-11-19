@@ -2,19 +2,18 @@ package com.example.ggb.service.impl;
 
 import com.example.ggb.common.Constants;
 import com.example.ggb.common.ServiceResultEnum;
-import com.example.ggb.controller.param.MallUserUpdateParam;
+import com.example.ggb.controller.mall.param.MallUserUpdateParam;
 import com.example.ggb.entity.MallUser;
 import com.example.ggb.entity.MallUserToken;
 import com.example.ggb.repository.MallUserMapper;
 import com.example.ggb.repository.MallUserTokenMapper;
 import com.example.ggb.service.MallUserService;
-import com.example.ggb.util.NumberUtil;
-import com.example.ggb.util.SHA256Util;
-import com.example.ggb.util.SystemUtil;
+import com.example.ggb.util.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
+import java.util.List;
 
 @Service
 public class MallUserServiceImpl  implements MallUserService {
@@ -167,10 +166,16 @@ public class MallUserServiceImpl  implements MallUserService {
 
     @Override
     public Boolean lockUsers(Long[] ids, int lockStatus) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'lockUsers'");
+        return mallUserMapper.lockUserBatch(ids, lockStatus) > 0;
     }
 
+    @Override
+    public PageResult getMallUsersPage(PageQueryUtil pageQueryUt) {
+        List<MallUser> mallUsers = mallUserMapper.findMallUserList(pageQueryUt);
+        int total = mallUserMapper.getTotalMallUsers(pageQueryUt);
+        PageResult pageResult = new PageResult(mallUsers, total, pageQueryUt.getLimit(), pageQueryUt.getPage());
+        return pageResult;
+    }
 
 
 }

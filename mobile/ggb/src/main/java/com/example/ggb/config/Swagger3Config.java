@@ -1,6 +1,6 @@
 package com.example.ggb.config;
 
-import com.example.ggb.entity.AdminUserToken;
+import com.example.ggb.entity.AdminUser;
 import com.example.ggb.entity.MallUser;
 import com.github.xiaoymin.knife4j.spring.annotations.EnableKnife4j;
 import org.springframework.context.annotation.Bean;
@@ -29,7 +29,7 @@ public class Swagger3Config {
     public Docket api() {
         return new Docket(DocumentationType.OAS_30)
                 .apiInfo(apiInfo())
-                .ignoredParameterTypes(MallUser.class, AdminUserToken.class)
+                .ignoredParameterTypes(MallUser.class, AdminUser.class)
                 .select()
                 .apis(RequestHandlerSelectors.basePackage("com.example.ggb.controller"))
                 .paths(PathSelectors.any())

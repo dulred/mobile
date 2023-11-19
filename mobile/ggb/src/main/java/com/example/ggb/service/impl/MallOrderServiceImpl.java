@@ -3,10 +3,10 @@ package com.example.ggb.service.impl;
 
 
 import com.example.ggb.common.*;
-import com.example.ggb.controller.vo.MallOrderDetailVO;
-import com.example.ggb.controller.vo.MallOrderItemVO;
-import com.example.ggb.controller.vo.MallOrderListVO;
-import com.example.ggb.controller.vo.MallShoppingCartItemVO;
+import com.example.ggb.controller.mall.vo.MallOrderDetailVO;
+import com.example.ggb.controller.mall.vo.MallOrderItemVO;
+import com.example.ggb.controller.mall.vo.MallOrderListVO;
+import com.example.ggb.controller.mall.vo.MallShoppingCartItemVO;
 import com.example.ggb.entity.*;
 import com.example.ggb.repository.*;
 import com.example.ggb.service.MallOrderService;
@@ -18,6 +18,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.CollectionUtils;
+import org.springframework.util.StringUtils;
 
 import java.util.*;
 import java.util.function.Function;
@@ -253,6 +254,146 @@ public class MallOrderServiceImpl implements MallOrderService {
             }
         }
         return ServiceResultEnum.ORDER_NOT_EXIST_ERROR.getResult();
+    }
+
+    @Override
+    public PageResult getMallOrdersPage(PageQueryUtil pageQueryUtil) {
+        List<MallOrder> mallOrders = mallOrderMapper.findMallOrderList(pageQueryUtil);
+        int total = mallOrderMapper.getTotalMallOrders(pageQueryUtil);
+        PageResult pageResult = new PageResult(mallOrders, total, pageQueryUtil.getLimit(), pageQueryUtil.getPage());
+        return pageResult;
+    }
+
+    @Override
+    public MallOrderDetailVO getOrderDetailByOrderId(Long orderId) {
+        MallOrder mallOrder = mallOrderMapper.selectByPrimaryKey(orderId);
+        if (mallOrder == null) {
+            MallException.fail(ServiceResultEnum.DATA_NOT_EXIST.getResult());
+        }
+        List<MallOrderItem> orderItems = mallOrderItemMapper.selectByOrderId(mallOrder.getOrderId());
+        //获取订单项数据
+        if (!CollectionUtils.isEmpty(orderItems)) {
+            List<MallOrderItemVO> mallOrderItemVOS = BeanUtil.copyList(orderItems, MallOrderItemVO.class);
+            MallOrderDetailVO mallOrderDetailVO = new MallOrderDetailVO();
+            BeanUtil.copyProperties(mallOrder, mallOrderDetailVO);
+            mallOrderDetailVO.setOrderStatusString(MallOrderStatusEnum.getMallOrderStatusEnumByStatus(mallOrderDetailVO.getOrderStatus()).getName());
+            mallOrderDetailVO.setPayTypeString(PayTypeEnum.getPayTypeEnumByType(mallOrderDetailVO.getPayType()).getName());
+            mallOrderDetailVO.setMallOrderItemVOS(mallOrderItemVOS);
+            return mallOrderDetailVO;
+        } else {
+            MallException.fail(ServiceResultEnum.ORDER_ITEM_NULL_ERROR.getResult());
+            return null;
+        }
+    }
+
+    @Override
+    @Transactional
+    public String checkDone(Long[] ids) {
+        //查询所有的订单 判断状态 修改状态和更新时间
+        List<MallOrder> orders = mallOrderMapper.selectByPrimaryKeys(Arrays.asList(ids));
+        String errorOrderNos = "";
+        if (!CollectionUtils.isEmpty(orders)) {
+            for (MallOrder mallOrder : orders) {
+                if (mallOrder.getIsDeleted() == 1) {
+                    errorOrderNos += mallOrder.getOrderNo() + " ";
+                    continue;
+                }
+                if (mallOrder.getOrderStatus() != 1) {
+                    errorOrderNos += mallOrder.getOrderNo() + " ";
+                }
+            }
+            if (!StringUtils.hasText(errorOrderNos)) {
+                //订单状态正常 可以执行配货完成操作 修改订单状态和更新时间
+                if (mallOrderMapper.checkDone(Arrays.asList(ids)) > 0) {
+                    return ServiceResultEnum.SUCCESS.getResult();
+                } else {
+                    return ServiceResultEnum.DB_ERROR.getResult();
+                }
+            } else {
+                //订单此时不可执行出库操作
+                if (errorOrderNos.length() > 0 && errorOrderNos.length() < 100) {
+                    return errorOrderNos + "订单的状态不是支付成功无法执行出库操作";
+                } else {
+                    return "你选择了太多状态不是支付成功的订单，无法执行配货完成操作";
+                }
+            }
+        }
+        //未查询到数据 返回错误提示
+        return ServiceResultEnum.DATA_NOT_EXIST.getResult();
+    }
+
+    @Override
+    @Transactional
+    public String checkOut(Long[] ids) {
+        //查询所有的订单 判断状态 修改状态和更新时间
+        List<MallOrder> orders = mallOrderMapper.selectByPrimaryKeys(Arrays.asList(ids));
+        String errorOrderNos = "";
+        if (!CollectionUtils.isEmpty(orders)) {
+            for (MallOrder mallOrder : orders) {
+                if (mallOrder.getIsDeleted() == 1) {
+                    errorOrderNos += mallOrder.getOrderNo() + " ";
+                    continue;
+                }
+                if (mallOrder.getOrderStatus() != 1 && mallOrder.getOrderStatus() != 2) {
+                    errorOrderNos += mallOrder.getOrderNo() + " ";
+                }
+            }
+            if (!StringUtils.hasText(errorOrderNos)) {
+                //订单状态正常 可以执行出库操作 修改订单状态和更新时间
+                if (mallOrderMapper.checkOut(Arrays.asList(ids)) > 0) {
+                    return ServiceResultEnum.SUCCESS.getResult();
+                } else {
+                    return ServiceResultEnum.DB_ERROR.getResult();
+                }
+            } else {
+                //订单此时不可执行出库操作
+                if (errorOrderNos.length() > 0 && errorOrderNos.length() < 100) {
+                    return errorOrderNos + "订单的状态不是支付成功或配货完成无法执行出库操作";
+                } else {
+                    return "你选择了太多状态不是支付成功或配货完成的订单，无法执行出库操作";
+                }
+            }
+        }
+        //未查询到数据 返回错误提示
+        return ServiceResultEnum.DATA_NOT_EXIST.getResult();
+    }
+
+    @Override
+    @Transactional
+    public String closeOrder(Long[] ids) {
+        //查询所有的订单 判断状态 修改状态和更新时间
+        List<MallOrder> orders = mallOrderMapper.selectByPrimaryKeys(Arrays.asList(ids));
+        String errorOrderNos = "";
+        if (!CollectionUtils.isEmpty(orders)) {
+            for (MallOrder mallOrder : orders) {
+                // isDeleted=1 一定为已关闭订单
+                if (mallOrder.getIsDeleted() == 1) {
+                    errorOrderNos += mallOrder.getOrderNo() + " ";
+                    continue;
+                }
+                //已关闭或者已完成无法关闭订单
+                if (mallOrder.getOrderStatus() == 4 || mallOrder.getOrderStatus() < 0) {
+                    errorOrderNos += mallOrder.getOrderNo() + " ";
+                }
+            }
+            if (!StringUtils.hasText(errorOrderNos)) {
+                //订单状态正常 可以执行关闭操作 修改订单状态和更新时间&&恢复库存
+                if (mallOrderMapper.closeOrder(Arrays.asList(ids), MallOrderStatusEnum.ORDER_CLOSED_BY_JUDGE.getOrderStatus()) > 0 && recoverStockNum(Arrays.asList(ids))) {
+                    return ServiceResultEnum.SUCCESS.getResult();
+                } else {
+                    return ServiceResultEnum.DB_ERROR.getResult();
+                }
+            } else {
+                //订单此时不可执行关闭操作
+                if (errorOrderNos.length() > 0 && errorOrderNos.length() < 100) {
+                    return errorOrderNos + "订单不能执行关闭操作";
+                } else {
+                    return "你选择的订单不能执行关闭操作";
+                }
+            }
+        }
+        //未查询到数据 返回错误提示
+        return ServiceResultEnum.DATA_NOT_EXIST.getResult();
     }
 
 

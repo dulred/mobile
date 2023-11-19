@@ -21,6 +21,8 @@ public enum ServiceResultEnum {
 
     UPDATE_SUCCESS("修改成功！"),
 
+    DELETE_ERROR("删除失败！"),
+
     LOGOUT_ERROR("登出失败！"),
 
     LOGOUT_SUCCESS("登出成功！"),
@@ -62,11 +64,13 @@ public enum ServiceResultEnum {
     NOT_LOGIN_ERROR("未登录！"),
 
     ADMIN_NOT_LOGIN_ERROR("管理员未登录！"),
+    ADMIN_NOT_EXIT("管理员不存在！"),
 
     TOKEN_EXPIRE_ERROR("无效认证！请重新登录！"),
 
     ADMIN_TOKEN_EXPIRE_ERROR("管理员登录过期！请重新登录！"),
 
+    ADMIN_USER_LOCKED_ERROR("管理员已被禁止登录！"),
     USER_NULL_ERROR("无效用户！请重新登录！"),
 
     LOGIN_USER_LOCKED_ERROR("用户已被禁止登录！"),

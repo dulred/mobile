@@ -4,7 +4,7 @@ package com.example.ggb.service.impl;
 
 import com.example.ggb.common.MallException;
 import com.example.ggb.common.ServiceResultEnum;
-import com.example.ggb.controller.vo.MallUserAddressVO;
+import com.example.ggb.controller.mall.vo.MallUserAddressVO;
 import com.example.ggb.entity.MallUserAddress;
 import com.example.ggb.repository.MallUserAddressMapper;
 import com.example.ggb.service.MallUserAddressService;

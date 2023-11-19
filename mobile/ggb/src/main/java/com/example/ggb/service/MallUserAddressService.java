@@ -1,7 +1,7 @@
 
 package com.example.ggb.service;
 
-import com.example.ggb.controller.vo.MallUserAddressVO;
+import com.example.ggb.controller.mall.vo.MallUserAddressVO;
 import com.example.ggb.entity.MallUserAddress;
 
 import java.util.List;

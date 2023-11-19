@@ -2,21 +2,21 @@ package com.example.ggb.service.impl;
 
 import com.example.ggb.common.Constants;
 import com.example.ggb.common.MallCategoryLevelEnum;
-import com.example.ggb.controller.vo.MallIndexCategoryVO;
-import com.example.ggb.controller.vo.SecondLevelCategoryVO;
-import com.example.ggb.controller.vo.ThirdLevelCategoryVO;
+import com.example.ggb.common.ServiceResultEnum;
+import com.example.ggb.controller.mall.vo.MallIndexCategoryVO;
+import com.example.ggb.controller.mall.vo.SecondLevelCategoryVO;
+import com.example.ggb.controller.mall.vo.ThirdLevelCategoryVO;
 import com.example.ggb.entity.GoodsCategory;
 import com.example.ggb.repository.GoodsCategoryMapper;
 import com.example.ggb.service.MallCategoryService;
 import com.example.ggb.util.BeanUtil;
+import com.example.ggb.util.PageQueryUtil;
+import com.example.ggb.util.PageResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 import static java.util.stream.Collectors.groupingBy;
@@ -78,5 +78,55 @@ public class MallCategoryServiceImpl implements MallCategoryService {
             return null;
         }
     }
-    
+
+    @Override
+    public PageResult getCategorisPage(PageQueryUtil pageQueryUtil) {
+        List<GoodsCategory> goodsCategories = goodsCategoryMapper.findGoodsCategoryList(pageQueryUtil);
+        int total = goodsCategoryMapper.getTotalGoodsCategories(pageQueryUtil);
+        PageResult pageResult = new PageResult(goodsCategories, total, pageQueryUtil.getLimit(), pageQueryUtil.getPage());
+        return pageResult;
+    }
+
+    @Override
+    public GoodsCategory getGoodsCategoryById(Long categoryId) {
+        return  goodsCategoryMapper.selectByPrimaryKey(categoryId);
+    }
+
+    @Override
+    public String saveCategory(GoodsCategory category) {
+        GoodsCategory temp = goodsCategoryMapper.selectByLevelAndName(category.getCategoryLevel(), category.getCategoryName());
+        if (temp != null) {
+            return ServiceResultEnum.SAME_CATEGORY_EXIST.getResult();
+        }
+        if (goodsCategoryMapper.insertSelective(category) > 0) {
+            return ServiceResultEnum.SUCCESS.getResult();
+        }
+        return ServiceResultEnum.DB_ERROR.getResult();
+    }
+
+    @Override
+    public String updateCategory(GoodsCategory category) {
+        GoodsCategory temp = goodsCategoryMapper.selectByPrimaryKey(category.getCategoryId());
+        if (temp == null) {
+            return ServiceResultEnum.DATA_NOT_EXIST.getResult();
+        }
+        GoodsCategory temp2 = goodsCategoryMapper.selectByLevelAndName(category.getCategoryLevel(), category.getCategoryName());
+        if (temp2 != null && !temp2.getCategoryId().equals(category.getCategoryId())) {
+            //同名且不同id 不能继续修改
+            return ServiceResultEnum.SAME_CATEGORY_EXIST.getResult();
+        }
+        category.setUpdateTime(new Date());
+        if (goodsCategoryMapper.updateByPrimaryKeySelective(category) > 0) {
+            return ServiceResultEnum.SUCCESS.getResult();
+        }
+        return ServiceResultEnum.DB_ERROR.getResult();
+    }
+
+    @Override
+    public Boolean deleteBatch(Long[] ids) {
+        return goodsCategoryMapper.deleteBatch(ids)>0;
+    }
+
+
+
 }

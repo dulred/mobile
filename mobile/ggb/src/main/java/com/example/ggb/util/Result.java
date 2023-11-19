@@ -6,10 +6,9 @@ import lombok.Data;
 import java.io.Serializable;
 
 /**
- * @author 13
- * @qq交流群 796794009
- * @email 2449207463@qq.com
- * @link https://github.com/newbee-ltd
+ * @author dulred
+ * @date 2023/10/07
+ * @see Serializable
  */
 @Data
 public class Result<T> implements Serializable {

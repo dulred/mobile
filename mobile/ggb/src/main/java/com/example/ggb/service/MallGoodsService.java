@@ -23,5 +23,42 @@ public interface MallGoodsService {
      */
    MallGoods getMallGoodsById(Long id);
 
+    /**
+     * 商品添加
+     * @param mallGood
+     * @return @return {@code String }
+     * @author dulred
+     * @date 2023/10/09
+     *///
+   String  saveMallGoods (MallGoods mallGood);
+
+    /**
+     * 商品修改
+     * @param mallGood
+     * @return @return {@code String }
+     * @author dulred
+     * @date 2023/10/09
+     */
+    String updateMallGoods (MallGoods mallGood);
+
+    /**
+     * 批量修改商品状态
+     * @param ids
+     * @param sellStatus
+     * @return @return {@code Boolean }
+     * @author dulred
+     * @date 2023/10/09
+     */
+    Boolean  batchUpdateSellStatus (Long [] ids, int sellStatus);
+
+    /**
+     * 分頁查詢商品列表
+     *
+     * @param pageQueryUtil
+     * @return @return {@code PageResult }
+     * @author dulred
+     * @date 2023/10/09
+     */
+    PageResult   getMallGoodsPage (PageQueryUtil pageQueryUtil);
 
 }

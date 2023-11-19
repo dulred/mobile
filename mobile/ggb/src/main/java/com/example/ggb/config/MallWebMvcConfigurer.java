@@ -8,6 +8,8 @@
  */
 package com.example.ggb.config;
 
+import com.example.ggb.common.Constants;
+import com.example.ggb.config.handler.TokenToAdminUserMethodArgumentResolver;
 import com.example.ggb.config.handler.TokenToMallUserMethodArgumentResolver;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -25,16 +27,24 @@ public class MallWebMvcConfigurer extends WebMvcConfigurationSupport {
     @Autowired
     private TokenToMallUserMethodArgumentResolver tokenToMallUserMethodArgumentResolver;
 
+    @Autowired
+    private TokenToAdminUserMethodArgumentResolver tokenToAdminUserMethodArgumentResolver;
     /**
      * TokenToMallUser 注解处理方法
      *
      * @param argumentResolvers
      */
+    @Override
     public void addArgumentResolvers(List<HandlerMethodArgumentResolver> argumentResolvers) {
         argumentResolvers.add(tokenToMallUserMethodArgumentResolver);
+        argumentResolvers.add(tokenToAdminUserMethodArgumentResolver);
     }
 
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
+
+//文件上传回显路径
+        registry.addResourceHandler("/upload/**").addResourceLocations("file:" + Constants.FILE_UPLOAD_DIC);
+        registry.addResourceHandler("/goods-img/**").addResourceLocations("file:" + "D:\\dulred\\learning\\SOC\\upload\\goods-img\\");
 
 //        doc.html
         registry.
